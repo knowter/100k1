@@ -10,6 +10,8 @@ import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import ru.knowter.games.game100k1.letters.Letter;
 import ru.knowter.games.game100k1.letters.ThreeLetters;
 
 /**
@@ -19,6 +21,9 @@ import ru.knowter.games.game100k1.letters.ThreeLetters;
 public class GameApp {
 
 public static void main(String[] args) throws IOException {
+
+  java.util.logging.Logger.getLogger("com.gargoylesoftware.htmlunit").setLevel(Level.OFF);
+  java.util.logging.Logger.getLogger("org.apache.commons.httpclient").setLevel(Level.OFF);
 
   try (final WebClient webClient = new WebClient(BrowserVersion.FIREFOX_52)) {
     //webClient.setHTMLParserListener(HTMLParserListener.LOG_REPORTER);
@@ -30,8 +35,9 @@ public static void main(String[] args) throws IOException {
     ArrayList<Integer> checkSums = checkSumGetter.getCheckSum();
     for (int i = 0; i < 7; i++) {
       Integer checkSum = checkSums.get(i);
-      System.out.println("chekSum " + i + ": " + checkSum);
-      threeLetters.getLettersByCheckSum(checkSum);
+      ArrayList<Letter> lettersByCheckSum = threeLetters.getLettersByCheckSum(checkSum);
+      AnswerFinder answerFinder = new AnswerFinder(lettersByCheckSum);
+      System.out.println(answerFinder.find(page));
     }
   }
 }
