@@ -10,6 +10,7 @@ import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.gargoylesoftware.htmlunit.util.Cookie;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -25,7 +26,13 @@ public static void main(String[] args) throws IOException {
     //webClient.setHTMLParserListener(HTMLParserListener.LOG_REPORTER);
     final HtmlPage page = webClient.getPage("http://100-1.ru/");
     String xmlPage = page.asXml();
-    System.out.println("xmlPage: \n"+xmlPage);
+    //System.out.println("xmlPage: \n"+xmlPage);
+
+    CheckSumGetter checkSumGetter = new CheckSumGetter(xmlPage);
+    ArrayList<Integer> checkSum = checkSumGetter.getCheckSum();
+    for (int i = 0; i < 7; i++) {
+      System.out.println("chekSum " + i + ": " + checkSum.get(i));
+    }
   }
 }
 }
