@@ -8,11 +8,9 @@ package ru.knowter.games.game100k1;
 import com.gargoylesoftware.htmlunit.BrowserVersion;
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
-import com.gargoylesoftware.htmlunit.util.Cookie;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Set;
+import ru.knowter.games.game100k1.letters.ThreeLetters;
 
 /**
  *
@@ -22,16 +20,19 @@ public class GameApp {
 
 public static void main(String[] args) throws IOException {
 
-  try (final WebClient webClient = new WebClient(BrowserVersion.FIREFOX_52, "10.250.25.59", 3128)) {
+  try (final WebClient webClient = new WebClient(BrowserVersion.FIREFOX_52)) {
     //webClient.setHTMLParserListener(HTMLParserListener.LOG_REPORTER);
     final HtmlPage page = webClient.getPage("http://100-1.ru/");
     String xmlPage = page.asXml();
     //System.out.println("xmlPage: \n"+xmlPage);
-
+    ThreeLetters threeLetters = new ThreeLetters();
+    
     CheckSumGetter checkSumGetter = new CheckSumGetter(xmlPage);
-    ArrayList<Integer> checkSum = checkSumGetter.getCheckSum();
+    ArrayList<Integer> checkSums = checkSumGetter.getCheckSum();
     for (int i = 0; i < 7; i++) {
-      System.out.println("chekSum " + i + ": " + checkSum.get(i));
+      Integer checkSum = checkSums.get(i);
+      System.out.println("chekSum " + i + ": " + checkSum);
+      threeLetters.getLettersByCheckSum(checkSum);
     }
   }
 }
