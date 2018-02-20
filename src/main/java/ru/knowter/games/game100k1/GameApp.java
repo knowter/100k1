@@ -24,9 +24,8 @@ public static void main(String[] args) throws IOException {
     //webClient.setHTMLParserListener(HTMLParserListener.LOG_REPORTER);
     final HtmlPage page = webClient.getPage("http://100-1.ru/");
     String xmlPage = page.asXml();
-    //System.out.println("xmlPage: \n"+xmlPage);
+    System.out.println(page.getElementsByTagName("font").get(14).getTextContent());
     ThreeLetters threeLetters = new ThreeLetters();
-    
     CheckSumGetter checkSumGetter = new CheckSumGetter(xmlPage);
     ArrayList<Integer> checkSums = checkSumGetter.getCheckSum();
     for (int i = 0; i < 7; i++) {
