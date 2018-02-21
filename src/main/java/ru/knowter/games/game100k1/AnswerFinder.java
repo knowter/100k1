@@ -70,7 +70,7 @@ public String find() {
   String result = "";
 
   for (int i = 0; i < threeLetters.size(); i++) {
-    System.out.println("checking letters: " + threeLetters.get(i).getLetter());
+    //System.out.println("checking letters: " + threeLetters.get(i).getLetter());
 
     HttpClient httpClient = new DefaultHttpClient();
     HttpPost httpPost = new HttpPost("http://100-1.ru/index.asp");
