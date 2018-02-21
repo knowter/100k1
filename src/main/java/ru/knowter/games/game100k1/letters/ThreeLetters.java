@@ -16,6 +16,7 @@ public class ThreeLetters {
 private ArrayList<Letter> letters;
 private ArrayList<Letter> threeLetters;
 
+
 public ThreeLetters() {
   letters = new ArrayList<>();
   initLetters(letters);
@@ -83,7 +84,7 @@ public ArrayList<Letter> getLettersByCheckSum(int pCheckSum){
     Letter letter = threeLetters.get(i);
     if (letter.getCode() == pCheckSum){
       arrayList.add(letter);
-      System.out.println("-------"+letter);
+      ///System.out.println("-------"+letter);
     }
   }
   return arrayList;
