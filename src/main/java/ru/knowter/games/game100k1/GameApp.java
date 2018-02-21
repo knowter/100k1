@@ -37,7 +37,7 @@ public static void main(String[] args) throws IOException {
       Integer checkSum = checkSums.get(i);
       ArrayList<Letter> lettersByCheckSum = threeLetters.getLettersByCheckSum(checkSum);
       AnswerFinder answerFinder = new AnswerFinder(lettersByCheckSum);
-      System.out.println(answerFinder.find(page));
+      System.out.println(answerFinder.find());
     }
   }
 }
