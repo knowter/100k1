@@ -25,7 +25,7 @@ public ThreeLetters() {
 
 private void initLetters(ArrayList<Letter> pLetters) {
   int i = 1040;
-  pLetters.add(new Letter(i++, "A"));
+  pLetters.add(new Letter(i++, "А"));
   pLetters.add(new Letter(i++, "Б"));
   pLetters.add(new Letter(i++, "В"));
   pLetters.add(new Letter(i++, "Г"));
